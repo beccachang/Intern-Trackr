@@ -1,5 +1,7 @@
 import requests
 import time
+import random
+import sys
 from bs4 import BeautifulSoup
 
 #### LinkedIn Software Engineering Intern Job Board Parser ####
@@ -14,24 +16,45 @@ table = soup.find('article', attrs = {'id': 'JobResults'})
 companyName = []
 loadingAgain = False
 overkill = 0
+counter = 5
 
-while companyName == []:
-    companyName = soup.find_all('h4', attrs={"class": "result-card__subtitle"}, limit=10)
-    positionName = soup.find_all('a', attrs={"class": "result-card__full-card-link"}, limit=10)
-    linkName = soup.find_all('a', attrs={"class": "result-card__full-card-link"}, href=True, limit=10)
-    if companyName == []:
-        if loadingAgain is False:
-            print("Loading... (Automatically refreshing for a minute!)")
-            loadingAgain = True
-        else:
-            if overkill == 5:
-                print()
-                print("Failed: Try run the program again later :(")
-                break
+## While loop algorithm doesn't work :(
+# while companyName == []:
+#     companyName = soup.find_all('h4', attrs={"class": "result-card__subtitle"}, limit=10)
+#     positionName = soup.find_all('a', attrs={"class": "result-card__full-card-link"}, limit=10)
+#     linkName = soup.find_all('a', attrs={"class": "result-card__full-card-link"}, href=True, limit=10)
 
-            print("Loading... (Automatically refreshing for another minute!)")
-        overkill += 1
-        time.sleep(60)
+#     print(companyName)
+
+#     if companyName == []:
+
+#         if loadingAgain is False:
+#             print("Loading... (Please wait!)")
+#             time.sleep(counter)
+#             loadingAgain = True
+
+#         else:
+#             if overkill < 5:
+#                 print("Loading... (Just a bit more!)")
+#             else:
+#                 print("Loading... (It's getting there!)")
+
+#             if overkill == 10:
+#                 print()
+#                 print("FAILED: Try run the program again later :(")
+#                 break
+
+#             time.sleep(counter)
+#         counter += random.randint(1, 5)
+#         overkill += 1
+
+companyName = soup.find_all('h4', attrs={"class": "result-card__subtitle"}, limit=10)
+positionName = soup.find_all('a', attrs={"class": "result-card__full-card-link"}, limit=10)
+linkName = soup.find_all('a', attrs={"class": "result-card__full-card-link"}, href=True, limit=10)
+
+if companyName == []:
+    print("URL Request Overload: Please run this program again in a few seconds!")
+    sys.exit()
 
 # Data sets
 company_result = []

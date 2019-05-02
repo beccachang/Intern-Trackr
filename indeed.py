@@ -6,11 +6,9 @@ from bs4 import BeautifulSoup
 
 #### LinkedIn Software Engineering Intern Job Board Parser ####
 
-URL = "https://www.linkedin.com/jobs/search/?distance=25&keywords=software%20engineering%20intern"
+URL = "https://www.indeed.com/jobs?q=software+engineering+intern&l="
 r = requests.get(URL)
 soup = BeautifulSoup(r.content, 'html5lib')
-
-table = soup.find('article', attrs = {'id': 'JobResults'})
 
 # Intializer used just to let the datas load.
 companyName = []
@@ -48,10 +46,10 @@ counter = 5
 #         counter += random.randint(1, 5)
 #         overkill += 1
 
-### MAXIMUM LIMIT: 25 ###
-companyName = soup.find_all('h4', attrs={"class": "result-card__subtitle"}, limit=25)
-positionName = soup.find_all('a', attrs={"class": "result-card__full-card-link"}, limit=25)
-linkName = soup.find_all('a', attrs={"class": "result-card__full-card-link"}, href=True, limit=25)
+### MAXIMUM LIMIT: 18 ###
+companyName = soup.find_all('span', attrs={"class": "company"}, limit=18)
+positionName = soup.find_all('div', attrs={"class": "title"}, limit=18)
+linkName = soup.find_all('a', attrs={"class": "jobtitle"}, href=True, limit=18)
 
 if companyName == []:
     print("URL Request Overload: Please run this program again in a few seconds!")
@@ -76,11 +74,11 @@ for i in range(len(company_result)):
     print()
     print("Company " + str(i + 1) + ":")
     print("---------------------------------------------------------------------------")
-    print(company_result[i])
+    print(company_result[i].strip())
     print()
-    print(position_result[i])
+    print(position_result[i].strip())
     print()
-    print(link_result[i])
+    print("https://www.indeed.com" + link_result[i])
     print()
     print("===========================================================================")
 

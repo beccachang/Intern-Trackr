@@ -1,4 +1,6 @@
-# Intern-Trackr
+# Internship Job Board Parser
 
-05/01 - Tracks LinkedIn Company Names <br />
-05/02 - Added Glassdoor and Indeed (Glassdoor is broken) - Made small edits to LinkedIn
+This is a Python Script created to parse job boards (LinkedIn, Indeed, and Glassdoor) to make searching for internships quicker and easier.
+
+#### Technologies Used:
+Python3, BeautifulSoup4

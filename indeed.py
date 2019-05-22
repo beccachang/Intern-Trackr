@@ -4,7 +4,7 @@ import random
 import sys
 from bs4 import BeautifulSoup
 
-#### Indeed Job Board Parser ####
+#### Indeed Job Board Parser Python Script ####
 
 # User enters their information and assigns it as variables
 position = input("What positions are you looking for? \n")

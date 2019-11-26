@@ -18,7 +18,7 @@ print()
 
 # Utilizes BeautifulSoup Library to Parse Indeed.com
 r = requests.get(URL)
-soup = BeautifulSoup(r.content, 'html5lib')
+soup = BeautifulSoup(r.content, 'html.parser')
 
 # Intializer used just to let the datas load.
 companyName = []
